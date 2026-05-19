@@ -2,7 +2,37 @@
 
 本リポジトリは[Devin](https://app.devin.ai/) を使用して実装された書籍管理システムの例です（要件定義～実装まで）。
 
-![概要図](./assets/devin_claudebeads_overview.png)
+```mermaid
+flowchart LR
+    Human["🧑 人間"]
+
+    subgraph Devin["《Devin》"]
+        DevinAI["《Devin Session》\n書籍管理システム\n開発セッション"]
+
+        subgraph TaskEnv["開発環境（仮装マシン）"]
+            ClaudeLocal["《Claude Code》\nclaude -p コマンド"]
+            BeadsTool["《Beads》\nbd コマンド"]
+            ProjectDir["《開発ディレクトリ》\n書籍管理リポジトリ"]
+            StandardRules["《独自開発標準》\nWebPot SI Docsリポジトリ"]
+        end
+
+    end
+
+    subgraph Anthropic["《Anthropic》"]
+        Sonnet["Claude Sonnet"]
+        Opus["Claude Opus"]
+    end
+
+    Human <--"対話"---> DevinAI
+
+    DevinAI --"《use》"--> ClaudeLocal
+    ClaudeLocal --"《CRUD》"--> ProjectDir
+    DevinAI --"《use》"--> BeadsTool
+    DevinAI --"《reference》"--> StandardRules
+    BeadsTool --"《CRUD》"--> ProjectDir
+
+    ClaudeLocal <--> Anthropic
+```
 
 - Devin仮装マシンに[beads](https://github.com/gastownhall/beads)をインストール
 - Devin仮装マシンに独自開発標準ファイル群をアップロード
@@ -16,7 +46,17 @@
 
 ## Devinに実際に指示したプロンプト
 
-![プロンプト](./assets/devin_claudebeads_prompt.png)
+```mermaid
+flowchart LR
+    Human["🧑 人間"]
+
+    subgraph Devin["《Devin》"]
+        DevinAI["《Devin Session》\n書籍管理システム\n開発セッション"]
+
+    end
+
+    Human <--"※対話※"---> DevinAI
+```
 
 ### 1. WebPot SI Docs → Beads
 
