@@ -1,0 +1,86 @@
+<%
+  const FLASH_MAP = {
+    created: { type: 'success', text: '書籍を登録しました。' },
+    updated: { type: 'success', text: '書籍情報を更新しました。' },
+    deleted: { type: 'success', text: '書籍を削除しました。' },
+    already_deleted: { type: 'warning', text: '対象の書籍は既に削除されています。' },
+    out_of_range_page: { type: 'warning', text: 'ページ番号が範囲外です。1ページ目を表示します。' },
+  };
+  const flashInfo = flash && FLASH_MAP[flash] ? FLASH_MAP[flash] : null;
+  function fmt(v) { return (v === null || v === undefined || v === '') ? '' : v; }
+  function trunc(s, n) {
+    if (s === null || s === undefined) return '';
+    const t = String(s);
+    return t.length > n ? t.slice(0, n) + '…' : t;
+  }
+  const pageTitle = '書籍一覧';
+%>
+<%- include('partials/header', { appVersion, pageTitle }) %>
+
+  <section class="page">
+    <h1 class="page__title">書籍一覧</h1>
+
+    <% if (flashInfo) { %>
+      <div class="toast toast--<%= flashInfo.type %>" role="status">
+        <span class="toast__text"><%= flashInfo.text %></span>
+        <button type="button" class="toast__close" aria-label="閉じる">×</button>
+      </div>
+    <% } %>
+
+    <% if (total === 0) { %>
+      <div class="empty">
+        <p>登録された書籍はありません。</p>
+        <p><a class="link" href="/books/new">新規登録画面へ</a></p>
+      </div>
+    <% } else { %>
+      <div class="list-meta">
+        <span>全 <%= total %> 件 / <%= page %> / <%= page_count %> ページ</span>
+      </div>
+      <table class="book-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>タイトル</th>
+            <th>著者</th>
+            <th>出版社</th>
+            <th>購入日</th>
+            <th>価格</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% books.forEach(function(b) { %>
+            <tr>
+              <td><%= b.id %></td>
+              <td><%= trunc(b.title, 30) %></td>
+              <td><%= trunc(b.author, 20) %></td>
+              <td><%= trunc(fmt(b.publisher), 16) %></td>
+              <td><%= fmt(b.purchase_date) %></td>
+              <td class="num"><%= b.price === null || b.price === undefined ? '' : '¥' + Number(b.price).toLocaleString('ja-JP') %></td>
+              <td class="actions">
+                <a class="btn btn--small" href="/books/<%= b.id %>/edit">修正</a>
+                <form class="inline" method="POST" action="/books/<%= b.id %>/delete"
+                      data-confirm="「<%= b.title %>」を削除します。この操作は取り消せません。よろしいですか？">
+                  <button type="submit" class="btn btn--small btn--danger">削除</button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+
+      <% if (page_count > 1) { %>
+        <nav class="pagination">
+          <% if (page > 1) { %>
+            <a class="btn btn--small" href="/books?page=<%= page - 1 %>">前へ</a>
+          <% } %>
+          <span class="pagination__current"><%= page %> / <%= page_count %></span>
+          <% if (page < page_count) { %>
+            <a class="btn btn--small" href="/books?page=<%= page + 1 %>">次へ</a>
+          <% } %>
+        </nav>
+      <% } %>
+    <% } %>
+  </section>
+
+<%- include('partials/footer', { appVersion }) %>

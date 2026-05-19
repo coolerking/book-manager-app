@@ -1,0 +1,7 @@
+{
+  "database": "dolt",
+  "backend": "dolt",
+  "dolt_mode": "embedded",
+  "dolt_database": "book_manager_app",
+  "project_id": "834ba44d-b2ab-45c4-8c43-6527d47987ab"
+}

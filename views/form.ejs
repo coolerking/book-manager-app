@@ -1,0 +1,83 @@
+<%
+  const pageTitle = mode === 'edit' ? '書籍編集' : '書籍登録';
+  function val(name) {
+    const v = book && book[name];
+    return (v === null || v === undefined) ? '' : v;
+  }
+  const hasErrors = errors && Object.keys(errors).length > 0;
+%>
+<%- include('partials/header', { appVersion, pageTitle }) %>
+
+  <section class="page">
+    <h1 class="page__title"><%= pageTitle %></h1>
+
+    <% if (hasErrors) { %>
+      <div class="toast toast--error" role="alert">
+        <span class="toast__text">入力内容を確認してください。</span>
+      </div>
+    <% } %>
+
+    <form class="book-form" method="POST" action="<%= action_url %>" novalidate>
+      <div class="form-row">
+        <label class="form-row__label" for="f-title">タイトル <span class="req">*</span></label>
+        <input id="f-title" class="form-row__input <%= errors.title ? 'is-error' : '' %>"
+               type="text" name="title" maxlength="200"
+               value="<%= val('title') %>" placeholder="例: 達人プログラマー" required>
+        <% if (errors.title) { %><p class="form-row__error"><%= errors.title %></p><% } %>
+      </div>
+
+      <div class="form-row">
+        <label class="form-row__label" for="f-author">著者 <span class="req">*</span></label>
+        <input id="f-author" class="form-row__input <%= errors.author ? 'is-error' : '' %>"
+               type="text" name="author" maxlength="100"
+               value="<%= val('author') %>" placeholder="例: Andrew Hunt" required>
+        <% if (errors.author) { %><p class="form-row__error"><%= errors.author %></p><% } %>
+      </div>
+
+      <div class="form-row">
+        <label class="form-row__label" for="f-isbn">ISBN</label>
+        <input id="f-isbn" class="form-row__input <%= errors.isbn ? 'is-error' : '' %>"
+               type="text" name="isbn" maxlength="17"
+               value="<%= val('isbn') %>" placeholder="例: 978-4-274-21933-2">
+        <% if (errors.isbn) { %><p class="form-row__error"><%= errors.isbn %></p><% } %>
+      </div>
+
+      <div class="form-row">
+        <label class="form-row__label" for="f-publisher">出版社</label>
+        <input id="f-publisher" class="form-row__input <%= errors.publisher ? 'is-error' : '' %>"
+               type="text" name="publisher" maxlength="100"
+               value="<%= val('publisher') %>">
+        <% if (errors.publisher) { %><p class="form-row__error"><%= errors.publisher %></p><% } %>
+      </div>
+
+      <div class="form-row">
+        <label class="form-row__label" for="f-purchase_date">購入日</label>
+        <input id="f-purchase_date" class="form-row__input <%= errors.purchase_date ? 'is-error' : '' %>"
+               type="date" name="purchase_date"
+               value="<%= val('purchase_date') %>">
+        <% if (errors.purchase_date) { %><p class="form-row__error"><%= errors.purchase_date %></p><% } %>
+      </div>
+
+      <div class="form-row">
+        <label class="form-row__label" for="f-price">価格</label>
+        <input id="f-price" class="form-row__input form-row__input--num <%= errors.price ? 'is-error' : '' %>"
+               type="number" name="price" min="0" max="9999999" step="1"
+               value="<%= val('price') %>">
+        <% if (errors.price) { %><p class="form-row__error"><%= errors.price %></p><% } %>
+      </div>
+
+      <div class="form-row">
+        <label class="form-row__label" for="f-memo">メモ</label>
+        <textarea id="f-memo" class="form-row__input form-row__input--memo <%= errors.memo ? 'is-error' : '' %>"
+                  name="memo" maxlength="1000" rows="4"><%= val('memo') %></textarea>
+        <% if (errors.memo) { %><p class="form-row__error"><%= errors.memo %></p><% } %>
+      </div>
+
+      <div class="form-actions">
+        <a class="btn" href="/books">キャンセル</a>
+        <button class="btn btn--primary" type="submit"><%= submit_label %></button>
+      </div>
+    </form>
+  </section>
+
+<%- include('partials/footer', { appVersion }) %>

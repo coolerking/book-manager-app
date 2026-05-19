@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= typeof pageTitle !== 'undefined' ? pageTitle + ' | ' : '' %>書籍管理</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-header__title" href="/books">書籍管理</a>
+      <nav class="site-header__nav">
+        <a class="btn btn--primary" href="/books/new">新規登録</a>
+      </nav>
+    </div>
+  </header>
+  <main class="site-main">

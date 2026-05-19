@@ -1,0 +1,235 @@
+/* 書籍管理アプリ 共通スタイル */
+:root {
+  --color-bg: #f6f7fa;
+  --color-surface: #ffffff;
+  --color-border: #d9dce3;
+  --color-text: #1f2430;
+  --color-muted: #6a7186;
+  --color-primary: #2563eb;
+  --color-primary-hover: #1d4ed8;
+  --color-danger: #dc2626;
+  --color-danger-hover: #b91c1c;
+  --color-success: #16a34a;
+  --color-warning: #d97706;
+  --color-error: #dc2626;
+  --header-height: 56px;
+  --radius: 6px;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN",
+    "Hiragino Sans", Meiryo, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+a { color: var(--color-primary); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ヘッダ */
+.site-header {
+  height: var(--header-height);
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.site-header__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 100%;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.site-header__title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+.site-header__title:hover { text-decoration: none; }
+.site-header__nav { display: flex; gap: 8px; }
+
+/* メイン */
+.site-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.page__title {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 16px;
+}
+
+/* フッタ */
+.site-footer {
+  max-width: 1200px;
+  margin: 32px auto 16px;
+  padding: 0 24px;
+  color: var(--color-muted);
+  text-align: right;
+}
+
+/* ボタン */
+.btn {
+  display: inline-block;
+  padding: 8px 14px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  line-height: 1.2;
+}
+.btn:hover { background: #f0f2f7; text-decoration: none; }
+.btn--primary {
+  background: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+}
+.btn--primary:hover { background: var(--color-primary-hover); border-color: var(--color-primary-hover); }
+.btn--danger {
+  background: var(--color-surface);
+  color: var(--color-danger);
+  border-color: var(--color-danger);
+}
+.btn--danger:hover { background: var(--color-danger); color: #fff; }
+.btn--small { padding: 4px 10px; font-size: 13px; }
+
+/* 表 */
+.list-meta {
+  color: var(--color-muted);
+  margin-bottom: 8px;
+}
+.book-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.book-table th, .book-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--color-border);
+  text-align: left;
+  vertical-align: middle;
+}
+.book-table thead th {
+  background: #eef1f7;
+  font-weight: 600;
+  position: sticky;
+  top: var(--header-height);
+}
+.book-table tbody tr:last-child td { border-bottom: none; }
+.book-table tbody tr:hover { background: #f7f9fc; }
+.book-table .num { text-align: right; font-variant-numeric: tabular-nums; }
+.book-table .actions { white-space: nowrap; display: flex; gap: 6px; }
+
+.inline { display: inline; margin: 0; padding: 0; }
+
+/* 空状態 */
+.empty {
+  background: var(--color-surface);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius);
+  padding: 40px;
+  text-align: center;
+}
+
+/* ページネーション */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+.pagination__current { color: var(--color-muted); }
+
+/* フォーム */
+.book-form {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+  max-width: 720px;
+}
+.form-row { margin-bottom: 16px; }
+.form-row__label {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+.req { color: var(--color-danger); font-weight: 700; }
+.form-row__input {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-family: inherit;
+  background: #fff;
+}
+.form-row__input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+.form-row__input--num { max-width: 200px; }
+.form-row__input--memo { resize: vertical; min-height: 80px; }
+.is-error { border-color: var(--color-danger); background: #fff5f5; }
+.form-row__error {
+  color: var(--color-danger);
+  margin: 4px 0 0;
+  font-size: 13px;
+}
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--color-border);
+}
+
+/* トースト */
+.toast {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  margin-bottom: 16px;
+  border: 1px solid;
+}
+.toast--success { background: #ecfdf5; color: #065f46; border-color: #a7f3d0; }
+.toast--warning { background: #fffbeb; color: #92400e; border-color: #fde68a; }
+.toast--error { background: #fef2f2; color: #991b1b; border-color: #fecaca; }
+.toast__close {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: inherit;
+  padding: 0 4px;
+  line-height: 1;
+}
+
+.link { color: var(--color-primary); }

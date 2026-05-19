@@ -1,0 +1,19 @@
+# Beads / Dolt files (added by bd init)
+.dolt/
+*.db
+.beads-credential-key
+
+# Node.js
+node_modules/
+
+# アプリのデータ
+data/
+
+# ログ
+*.log
+
+# OS / エディタ
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

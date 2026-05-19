@@ -1,0 +1,14 @@
+<%
+  const pageTitle = 'エラー';
+%>
+<%- include('partials/header', { appVersion, pageTitle }) %>
+
+  <section class="page">
+    <h1 class="page__title">エラー (<%= status %>)</h1>
+    <div class="toast toast--error" role="alert">
+      <span class="toast__text"><%= message %></span>
+    </div>
+    <p><a class="link" href="/books">一覧へ戻る</a></p>
+  </section>
+
+<%- include('partials/footer', { appVersion }) %>
