@@ -2,6 +2,8 @@
 
 本リポジトリは[Devin](https://app.devin.ai/) を使用して実装された書籍管理システムの例です（要件定義～実装まで）。
 
+![概要図](./assets/devin_claudebeads_overview.png)
+
 - Devin仮装マシンに[beads](https://github.com/gastownhall/beads)をインストール
 - Devin仮装マシンに独自開発標準ファイル群をアップロード
 - Devinに独自開発標準の成果物をbeadsワークフロー化するコマンドを作成
@@ -13,6 +15,8 @@
     - Devinが直接書籍管理システムを構築しないようにする
 
 ## Devinに実際に指示したプロンプト
+
+![プロンプト](./assets/devin_claudebeads_prompt.png)
 
 ### 1. WebPot SI Docs → Beads
 
