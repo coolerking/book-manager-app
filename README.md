@@ -381,4 +381,6 @@ Devin went to sleep
 
 →このリポジトリの成果物群
 
+> `claude logout` を実行し、認証解除
+
 <p align="right">以上</p>
