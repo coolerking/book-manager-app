@@ -1,8 +1,8 @@
 # 実装例「書籍管理システム」
 
-本リポジトリはDevineを使用して実装された書籍管理システムの例です（要件定義～実装まで）。
+本リポジトリは[Devin](https://app.devin.ai/) を使用して実装された書籍管理システムの例です（要件定義～実装まで）。
 
-- Devin仮装マシンにbeadsをインストール
+- Devin仮装マシンに[beads](https://github.com/gastownhall/beads)をインストール
 - Devin仮装マシンに独自開発標準ファイル群をアップロード
 - Devinに独自開発標準の成果物をbeadsワークフロー化するコマンドを作成
 - Devin仮装マシンにClaude Codeをインストール
