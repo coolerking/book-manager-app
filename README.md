@@ -44,7 +44,7 @@ flowchart LR
 - DevinにClaude Codeを使わせ、bdコマンドを使いながらClaue Codeで書籍管理システムを構築させる
     - Devinが直接書籍管理システムを構築しないようにする
 
-## Devinに実際に指示したプロンプト
+## Devinに実際に指示した"対話"
 
 ```mermaid
 flowchart LR
