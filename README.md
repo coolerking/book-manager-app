@@ -28,7 +28,7 @@ flowchart LR
     DevinAI --"《use》"--> ClaudeLocal
     ClaudeLocal --"《CRUD》"--> ProjectDir
     DevinAI --"《use》"--> BeadsTool
-    DevinAI --"《reference》"--> StandardRules
+    DevinAI <--"《reference》"-- StandardRules
     BeadsTool --"《CRUD》"--> ProjectDir
 
     ClaudeLocal <--> Anthropic
